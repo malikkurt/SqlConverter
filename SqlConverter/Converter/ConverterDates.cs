@@ -12,7 +12,7 @@ namespace SqlConverter.Converter
         {
             Console.WriteLine("Dates KONTROL");
 
-            if (queryParser.query.Contains("CURDATE()") || queryParser.query.Contains("CURRENT_DATE") || queryParser.query.Contains("CURRENT_DATE()"))
+            if (queryParser.query.Contains("CURDATE()") ||  queryParser.query.Contains("CURRENT_DATE") || queryParser.query.Contains("CURRENT_DATE()"))
             {
                 string source = queryParser.query;
 

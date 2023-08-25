@@ -14,7 +14,8 @@ namespace SqlConverter
         {
             this._nextConverterHandler = nextConverterHandler;
         }
-        
+
+       
 
         public abstract void Convert(QueryParser queryParser);
 

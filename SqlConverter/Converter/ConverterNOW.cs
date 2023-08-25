@@ -21,7 +21,7 @@ namespace SqlConverter.Converter
                 queryParser.query = source;
 
             }
-            //_nextConverterHandler.Convert(queryParser);
+            _nextConverterHandler.Convert(queryParser);
 
         }
     }

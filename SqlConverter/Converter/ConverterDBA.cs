@@ -4,27 +4,24 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SqlConverter
+namespace SqlConverter.Converter
 {
-    public class ConverterQuestion : ConverterHandler
+    public class ConverterDBA : ConverterHandler
     {
         public override void Convert(QueryParser queryParser)
         {
-            
-            Console.WriteLine("Question KONTROL");
+            Console.WriteLine("DBA KONTROL");
 
-            if (queryParser.query.Contains("?"))
+            if (queryParser.query.Contains("DBA"))
             {
                 string source = queryParser.query;
 
-                source = source.Replace("?", ":");
+                source = source.Replace("_DBA_", "_DBA.");
 
                 queryParser.query = source;
 
             }
-            _nextConverterHandler.Convert(queryParser);
-
+            //_nextConverterHandler.Convert(queryParser);
         }
-
     }
 }

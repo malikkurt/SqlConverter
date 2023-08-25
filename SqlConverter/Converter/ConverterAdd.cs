@@ -16,7 +16,7 @@ namespace SqlConverter.Converter
             {
                 string source = queryParser.query;
 
-                source = source.Replace("IFNULL", "nvl");
+                //source = source.Replace("IFNULL", "nvl");
 
                 queryParser.query = source;
 

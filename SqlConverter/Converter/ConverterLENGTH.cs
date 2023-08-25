@@ -10,7 +10,7 @@ namespace SqlConverter.Converter
     {
         public override void Convert(QueryParser queryParser)
         {
-            Console.WriteLine("LENGTH KONTROL");
+            Console.WriteLine("LENGTH - CHAR KONTROL");
 
             if (queryParser.query.Contains("CHAR_LENGTH") || queryParser.query.Contains("CHARACTER_LENGTH"))
             {

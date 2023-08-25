@@ -4,27 +4,24 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SqlConverter
+namespace SqlConverter.Converter
 {
-    public class ConverterQuestion : ConverterHandler
+    public class ConverterCEIL : ConverterHandler
     {
         public override void Convert(QueryParser queryParser)
         {
-            
-            Console.WriteLine("Question KONTROL");
+            Console.WriteLine("CEILING KONTROL");
 
-            if (queryParser.query.Contains("?"))
+            if (queryParser.query.Contains("CEILING"))
             {
                 string source = queryParser.query;
-
-                source = source.Replace("?", ":");
+                // burada ceıl de var ama aynı olduğu için koymadım
+                source = source.Replace("CEILING", "CEIL");
 
                 queryParser.query = source;
 
             }
             _nextConverterHandler.Convert(queryParser);
-
         }
-
     }
 }
