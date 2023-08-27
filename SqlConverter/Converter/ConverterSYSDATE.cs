@@ -12,11 +12,11 @@ namespace SqlConverter.Converter
         {
             Console.WriteLine("SYSDATE() KONTROL");
 
-            if (queryParser.query.Contains("SYSDATE()"))
+            if (queryParser.query.Contains(" SYSDATE()"))
             {
                 string source = queryParser.query;
 
-                source = source.Replace("SYSDATE()", "SYSDATE");
+                source = source.Replace(" SYSDATE()", " SYSDATE");
 
                 queryParser.query = source;
 

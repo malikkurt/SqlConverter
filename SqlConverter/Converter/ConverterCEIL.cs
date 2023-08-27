@@ -16,7 +16,7 @@ namespace SqlConverter.Converter
             {
                 string source = queryParser.query;
                 // burada ceıl de var ama aynı olduğu için koymadım
-                source = source.Replace("CEILING", "CEIL");
+                source = source.Replace(" CEILING", " CEIL");
 
                 queryParser.query = source;
 

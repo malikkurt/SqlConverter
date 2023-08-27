@@ -12,11 +12,11 @@ namespace SqlConverter.Converter
         {
             Console.WriteLine("TIMESTAMP KONTROL");
 
-            if (queryParser.query.Contains("CURRENT_TIMESTAMP()"))
+            if (queryParser.query.Contains(" CURRENT_TIMESTAMP()"))
             {
                 string source = queryParser.query;
                 // burada CURRENT_TIMESTAMP ama aynı olduğu için eklemedim
-                source = source.Replace("CURRENT_TIMESTAMP()", "CURRENT_TIMESTAMP");
+                source = source.Replace(" CURRENT_TIMESTAMP()", " CURRENT_TIMESTAMP");
 
                 queryParser.query = source;
 

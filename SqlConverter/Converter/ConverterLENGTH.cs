@@ -12,12 +12,12 @@ namespace SqlConverter.Converter
         {
             Console.WriteLine("LENGTH - CHAR KONTROL");
 
-            if (queryParser.query.Contains("CHAR_LENGTH") || queryParser.query.Contains("CHARACTER_LENGTH"))
+            if (queryParser.query.Contains(" CHAR_LENGTH") || queryParser.query.Contains(" CHARACTER_LENGTH"))
             {
                 string source = queryParser.query;
 
-                source = source.Replace("CHAR_LENGTH", "LENGTH");
-                source = source.Replace("CHARACTER_LENGTH", "LENGTH");
+                source = source.Replace(" CHAR_LENGTH", " LENGTH");
+                source = source.Replace(" CHARACTER_LENGTH", " LENGTH");
 
                 queryParser.query = source;
 

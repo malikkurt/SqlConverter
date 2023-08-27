@@ -12,14 +12,14 @@ namespace SqlConverter.Converter
         {
             Console.WriteLine("Dates KONTROL");
 
-            if (queryParser.query.Contains("CURDATE()") ||  queryParser.query.Contains("CURRENT_DATE") || queryParser.query.Contains("CURRENT_DATE()"))
+            if (queryParser.query.Contains(" CURDATE()") || queryParser.query.Contains(" CURRENT_DATE") || queryParser.query.Contains(" CURRENT_DATE()"))
             {
                 string source = queryParser.query;
 
-                source = source.Replace("CURDATE()", "TRUNC(SYSDATE)");
-                source = source.Replace("CURRENT_DATE", "TRUNC(SYSDATE)");
-                source = source.Replace("CURRENT_DATE()", "TRUNC(SYSDATE)");
-                
+                source = source.Replace(" CURDATE()", " TRUNC(SYSDATE)");
+                source = source.Replace(" CURRENT_DATE", " TRUNC(SYSDATE)");
+                source = source.Replace(" CURRENT_DATE()", " TRUNC(SYSDATE)");
+
 
                 queryParser.query = source;
 

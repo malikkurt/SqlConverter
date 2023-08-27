@@ -14,11 +14,11 @@ namespace SqlConverter
             
             Console.WriteLine("IFNULL KONTROL");
 
-            if (queryParser.query.Contains("IFNULL"))
+            if (queryParser.query.Contains(" IFNULL"))
             {
                 string source = queryParser.query;
 
-                source = source.Replace("IFNULL", "nvl");
+                source = source.Replace(" IFNULL", " nvl");
 
                 queryParser.query = source;
 

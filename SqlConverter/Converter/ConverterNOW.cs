@@ -12,11 +12,11 @@ namespace SqlConverter.Converter
         {
             Console.WriteLine("NOW() KONTROL");
 
-            if (queryParser.query.Contains("NOW()"))
+            if (queryParser.query.Contains(" NOW()"))
             {
                 string source = queryParser.query;
 
-                source = source.Replace("NOW()", "SYSTIMESTAMP");
+                source = source.Replace(" NOW()", " SYSTIMESTAMP");
 
                 queryParser.query = source;
 

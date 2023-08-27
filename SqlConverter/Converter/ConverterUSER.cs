@@ -12,12 +12,12 @@ namespace SqlConverter.Converter
         {
             Console.WriteLine("USER KONTROL");
 
-            if (queryParser.query.Contains("CURRENT_USER") || queryParser.query.Contains("CURRENT_USER()"))
+            if (queryParser.query.Contains(" CURRENT_USER") || queryParser.query.Contains(" CURRENT_USER()"))
             {
                 string source = queryParser.query;
 
-                source = source.Replace("CURRENT_USER", "USER");
-                source = source.Replace("CURRENT_USER()", "USER");
+                source = source.Replace(" CURRENT_USER", " USER");
+                source = source.Replace(" CURRENT_USER()", " USER");
 
                 queryParser.query = source;
 
