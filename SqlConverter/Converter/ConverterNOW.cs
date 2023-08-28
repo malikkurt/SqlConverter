@@ -10,19 +10,15 @@ namespace SqlConverter.Converter
     {
         public override void Convert(QueryParser queryParser)
         {
-            Console.WriteLine("NOW() KONTROL");
-
-            if (queryParser.query.Contains(" NOW()"))
+            for (int i = 0; i < queryParser.queryList.Count; i++)
             {
-                string source = queryParser.query;
-
-                source = source.Replace(" NOW()", " SYSTIMESTAMP");
-
-                queryParser.query = source;
+                if (queryParser.queryList[i].Contains("NOW()"))
+                {
+                    queryParser.queryList[i] = queryParser.queryList[i].Replace("NOW()", "SYSTIMESTAMP");
+                }
 
             }
             _nextConverterHandler.Convert(queryParser);
-
         }
     }
 }

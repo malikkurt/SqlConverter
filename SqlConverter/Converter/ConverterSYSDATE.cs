@@ -10,17 +10,15 @@ namespace SqlConverter.Converter
     {
         public override void Convert(QueryParser queryParser)
         {
-            Console.WriteLine("SYSDATE() KONTROL");
-
-            if (queryParser.query.Contains(" SYSDATE()"))
+            for (int i = 0; i < queryParser.queryList.Count; i++)
             {
-                string source = queryParser.query;
-
-                source = source.Replace(" SYSDATE()", " SYSDATE");
-
-                queryParser.query = source;
+                if (queryParser.queryList[i].Contains("SYSDATE()"))
+                {
+                    queryParser.queryList[i] = queryParser.queryList[i].Replace("SYSDATE()", "SYSDATE");
+                }
 
             }
+
             _nextConverterHandler.Convert(queryParser);
         }
     }

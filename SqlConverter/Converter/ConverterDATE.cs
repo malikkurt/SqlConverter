@@ -11,23 +11,17 @@ namespace SqlConverter.Converter
     {
         public override void Convert(QueryParser queryParser)
         {
-            Console.WriteLine("Date KONTROL");
-
-            if (queryParser.query.Contains(" DATE_ADD") || queryParser.query.Contains(" DATE_FORMAT") || queryParser.query.Contains(" DATE_SUB") || queryParser.query.Contains(" DATE") || queryParser.query.Contains(" DATEDIFF"))
+            for (int i = 0; i < queryParser.queryList.Count; i++)
             {
-                string source = queryParser.query;
-
-                source = source.Replace(" DATE_ADD", "");// burada () işaretlerini de silmem gerekiyor olabilir bakarsın 
-                source = source.Replace(" DATE_FORMAT", " TO_CHAR");
-                source = source.Replace(" DATE_SUB", "");// burada () işaretlerini de silmem gerekiyor olabilir bakarsın 
-                source = source.Replace(" DATE", " TRUNC");
-                source = source.Replace(" DATEDIFF", " --sorun--"); // sorunlu bura
-
-
-                queryParser.query = source;
+                if (queryParser.queryList[i].Contains(" DATE"))
+                {
+                    queryParser.queryList[i] = queryParser.queryList[i].Replace(" DATE", "TRUNC");
+                }
 
             }
+
             _nextConverterHandler.Convert(queryParser);
         }
     }
 }
+

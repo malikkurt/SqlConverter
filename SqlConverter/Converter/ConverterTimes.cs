@@ -10,20 +10,26 @@ namespace SqlConverter.Converter
     {
         public override void Convert(QueryParser queryParser)
         {
-            Console.WriteLine("Times KONTROL");
+            for (int i = 0; i < queryParser.queryList.Count; i++)
+            {   
+                if (queryParser.queryList[i].Contains("CURTIME()"))
+                {
+                    queryParser.queryList[i] = queryParser.queryList[i].Replace("CURTIME()", "SYSTIMESTAMP");
+                }
 
-            if (queryParser.query.Contains(" CURTIME()") || queryParser.query.Contains(" CURRENT_TIME") || queryParser.query.Contains(" CURRENT_TIME()"))
-            {
-                string source = queryParser.query;
+                if (queryParser.queryList[i].Contains("CURRENT_TIME"))
+                {
+                    queryParser.queryList[i] = queryParser.queryList[i].Replace("CURRENT_TIME", "SYSTIMESTAMP");
+                }
 
-                source = source.Replace(" CURTIME()", " SYSTIMESTAMP");
-                source = source.Replace(" CURRENT_TIME", " SYSTIMESTAMP");
-                source = source.Replace(" CURRENT_TIME()", " SYSTIMESTAMP");
-
-
-                queryParser.query = source;
-
+                if (queryParser.queryList[i].Contains("CURRENT_TIME()"))
+                {
+                    queryParser.queryList[i] = queryParser.queryList[i].Replace("CURRENT_TIME()", "SYSTIMESTAMP");
+                }
+                
             }
+
+
             _nextConverterHandler.Convert(queryParser);
         }
     }

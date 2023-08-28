@@ -10,20 +10,24 @@ namespace SqlConverter.Converter
     {
         public override void Convert(QueryParser queryParser)
         {
-            Console.WriteLine("Dates KONTROL");
-
-            if (queryParser.query.Contains(" CURDATE()") || queryParser.query.Contains(" CURRENT_DATE") || queryParser.query.Contains(" CURRENT_DATE()"))
+            for (int i = 0; i < queryParser.queryList.Count; i++)
             {
-                string source = queryParser.query;
+                if (queryParser.queryList[i].Contains(" CURDATE()"))
+                {
+                    queryParser.queryList[i] = queryParser.queryList[i].Replace(" IFNULL", " TRUNC(SYSDATE)");
+                }
 
-                source = source.Replace(" CURDATE()", " TRUNC(SYSDATE)");
-                source = source.Replace(" CURRENT_DATE", " TRUNC(SYSDATE)");
-                source = source.Replace(" CURRENT_DATE()", " TRUNC(SYSDATE)");
+                if (queryParser.queryList[i].Contains(" CURRENT_DATE"))
+                {
+                    queryParser.queryList[i] = queryParser.queryList[i].Replace(" CURRENT_DATE", " TRUNC(SYSDATE)");
+                }
 
-
-                queryParser.query = source;
-
+                if (queryParser.queryList[i].Contains(" CURRENT_DATE()"))
+                {
+                    queryParser.queryList[i] = queryParser.queryList[i].Replace(" CURRENT_DATE()", " TRUNC(SYSDATE)");
+                }
             }
+
             _nextConverterHandler.Convert(queryParser);
         }
     }

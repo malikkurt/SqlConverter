@@ -10,17 +10,17 @@ namespace SqlConverter.Converter
     {
         public override void Convert(QueryParser queryParser)
         {
-            Console.WriteLine("LENGTH - CHAR KONTROL");
-
-            if (queryParser.query.Contains(" CHAR_LENGTH") || queryParser.query.Contains(" CHARACTER_LENGTH"))
+            for (int i = 0; i < queryParser.queryList.Count; i++)
             {
-                string source = queryParser.query;
+                if (queryParser.queryList[i].Contains(" CHAR_LENGTH"))
+                {
+                    queryParser.queryList[i] = queryParser.queryList[i].Replace(" CHAR_LENGTH", "LENGTH");
+                }
 
-                source = source.Replace(" CHAR_LENGTH", " LENGTH");
-                source = source.Replace(" CHARACTER_LENGTH", " LENGTH");
-
-                queryParser.query = source;
-
+                if (queryParser.queryList[i].Contains(" CHARACTER_LENGTH"))
+                {
+                    queryParser.queryList[i] = queryParser.queryList[i].Replace(" CHARACTER_LENGTH", "LENGTH");
+                }
             }
             _nextConverterHandler.Convert(queryParser);
         }

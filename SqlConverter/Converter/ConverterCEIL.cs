@@ -10,17 +10,19 @@ namespace SqlConverter.Converter
     {
         public override void Convert(QueryParser queryParser)
         {
-            Console.WriteLine("CEILING KONTROL");
-
-            if (queryParser.query.Contains("CEILING"))
+            for (int i = 0; i < queryParser.queryList.Count; i++)
             {
-                string source = queryParser.query;
-                // burada ceıl de var ama aynı olduğu için koymadım
-                source = source.Replace(" CEILING", " CEIL");
+                if (queryParser.queryList[i].Contains("CEILING"))
+                {
+                    queryParser.queryList[i] = queryParser.queryList[i].Replace("CEILING", "CEIL");
+                }
 
-                queryParser.query = source;
-
+                //if (queryParser.queryList[i].Contains("CEIL"))
+                //{
+                //    queryParser.queryList[i] = queryParser.queryList[i].Replace("CEIL", "CEIL");
+                //}
             }
+
             _nextConverterHandler.Convert(queryParser);
         }
     }

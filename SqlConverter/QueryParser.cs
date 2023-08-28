@@ -8,10 +8,7 @@ namespace SqlConverter
 {
     public class QueryParser
     {
-        //public List<string> query;
-        public string query;
-        StringBuilder sb = new StringBuilder();
-
+        public List<string> queryList = new List<string>();
 
         public QueryParser(string _query)
         {
@@ -24,14 +21,9 @@ namespace SqlConverter
                 }
                 else
                 {
-                    sb.Append(s);
+                    queryList.Add(s);
                 }
             }
-
-            //this.query = sb.ToString().Split("  ").ToList();
-
-            query = _query;
-
         }
     }
 }

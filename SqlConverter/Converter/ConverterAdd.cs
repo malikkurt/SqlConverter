@@ -10,20 +10,28 @@ namespace SqlConverter.Converter
     {
         public override void Convert(QueryParser queryParser)
         {
-            Console.WriteLine("Add KONTROL");
 
-
-            if (queryParser.query.Contains("ADDDATE") )
+            for (int i = 0; i < queryParser.queryList.Count; i++)
             {
+                if (queryParser.queryList[i].Contains(" ADDDATE"))
+                {
+                    string [] sourceList = queryParser.queryList[i].Split('(',',',')');
 
-                string source = queryParser.query;
 
 
-                //source = source.Replace("IFNULL", "nvl");
+                    foreach(string s in sourceList)
+                    {
+                        Console.WriteLine(s);
+                    }
 
-                queryParser.query = source;
+
+                    queryParser.queryList[i] = queryParser.queryList[i].Replace(" ADDDATE", " ");
+                }
+                
 
             }
+
+
             _nextConverterHandler.Convert(queryParser);
         }
     }

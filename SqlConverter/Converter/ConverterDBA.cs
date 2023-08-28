@@ -10,16 +10,13 @@ namespace SqlConverter.Converter
     {
         public override void Convert(QueryParser queryParser)
         {
-            Console.WriteLine("DBA KONTROL");
 
-            if (queryParser.query.Contains("DBA"))
+            for (int i = 0; i < queryParser.queryList.Count; i++)
             {
-                string source = queryParser.query;
-
-                source = source.Replace("_DBA_", "_DBA.");
-
-                queryParser.query = source;
-
+                if (queryParser.queryList[i].Contains("_DBA_"))
+                {
+                    queryParser.queryList[i] = queryParser.queryList[i].Replace("_DBA_", "_DBA.");
+                }
             }
             //_nextConverterHandler.Convert(queryParser);
         }

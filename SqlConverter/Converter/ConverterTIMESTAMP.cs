@@ -10,17 +10,21 @@ namespace SqlConverter.Converter
     {
         public override void Convert(QueryParser queryParser)
         {
-            Console.WriteLine("TIMESTAMP KONTROL");
-
-            if (queryParser.query.Contains(" CURRENT_TIMESTAMP()"))
+            for (int i = 0; i < queryParser.queryList.Count; i++)
             {
-                string source = queryParser.query;
-                // burada CURRENT_TIMESTAMP ama aynı olduğu için eklemedim
-                source = source.Replace(" CURRENT_TIMESTAMP()", " CURRENT_TIMESTAMP");
+                if (queryParser.queryList[i].Contains("CURRENT_TIMESTAMP"))
+                {
+                    queryParser.queryList[i] = queryParser.queryList[i].Replace("CURRENT_TIMESTAMP", "CURRENT_TIMESTAMP");
+                }
 
-                queryParser.query = source;
-
+                if (queryParser.queryList[i].Contains("CURRENT_TIMESTAMP()"))
+                {
+                    queryParser.queryList[i] = queryParser.queryList[i].Replace("CURRENT_TIMESTAMP()", "CURRENT_TIMESTAMP");
+                }
             }
+
+
+
             _nextConverterHandler.Convert(queryParser);
         }
     }

@@ -10,20 +10,15 @@ namespace SqlConverter
     {
         public override void Convert(QueryParser queryParser)
         {
-            
-            Console.WriteLine("Question KONTROL");
-
-            if (queryParser.query.Contains("?"))
+            for (int i = 0; i < queryParser.queryList.Count; i++)
             {
-                string source = queryParser.query;
-
-                source = source.Replace("?", ":");
-
-                queryParser.query = source;
+                if (queryParser.queryList[i].Contains(" ?"))
+                {
+                    queryParser.queryList[i] = queryParser.queryList[i].Replace("?", ":");
+                }
 
             }
             _nextConverterHandler.Convert(queryParser);
-
         }
 
     }

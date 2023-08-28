@@ -10,16 +10,13 @@ namespace SqlConverter.Converter
     {
         public override void Convert(QueryParser queryParser)
         {
-            Console.WriteLine("Days KONTROL");
-
-            if (queryParser.query.Contains("IFNULL"))
+            foreach (string s in queryParser.queryList)
             {
-                string source = queryParser.query;
-
-                //source = source.Replace("IFNULL", "nvl");
-
-                queryParser.query = source;
-
+                //Console.WriteLine(s);
+                if (s.Contains(" ADDDATE"))
+                {
+                    //Console.WriteLine("evet");
+                }
             }
             _nextConverterHandler.Convert(queryParser);
         }

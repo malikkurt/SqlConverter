@@ -10,18 +10,19 @@ namespace SqlConverter.Converter
     {
         public override void Convert(QueryParser queryParser)
         {
-            Console.WriteLine("USER KONTROL");
-
-            if (queryParser.query.Contains(" CURRENT_USER") || queryParser.query.Contains(" CURRENT_USER()"))
+            for (int i = 0; i < queryParser.queryList.Count; i++)
             {
-                string source = queryParser.query;
+                if (queryParser.queryList[i].Contains("CURRENT_USER"))
+                {
+                    queryParser.queryList[i] = queryParser.queryList[i].Replace("CURRENT_USER", "USER");
+                }
 
-                source = source.Replace(" CURRENT_USER", " USER");
-                source = source.Replace(" CURRENT_USER()", " USER");
-
-                queryParser.query = source;
-
+                if (queryParser.queryList[i].Contains("CURRENT_USER()"))
+                {
+                    queryParser.queryList[i] = queryParser.queryList[i].Replace("CURRENT_USER()", "USER");
+                }
             }
+
             _nextConverterHandler.Convert(queryParser);
         }
     }
