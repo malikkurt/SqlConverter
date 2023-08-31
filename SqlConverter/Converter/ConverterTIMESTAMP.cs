@@ -12,14 +12,14 @@ namespace SqlConverter.Converter
         {
             for (int i = 0; i < queryParser.queryList.Count; i++)
             {
-                if (queryParser.queryList[i].Contains("CURRENT_TIMESTAMP"))
+                if (queryParser.queryList[i].Contains(" CURRENT_TIMESTAMP"))
                 {
-                    queryParser.queryList[i] = queryParser.queryList[i].Replace("CURRENT_TIMESTAMP", "CURRENT_TIMESTAMP");
+                    queryParser.queryList[i] = queryParser.queryList[i].Replace(" CURRENT_TIMESTAMP", " CURRENT_TIMESTAMP");
                 }
 
                 if (queryParser.queryList[i].Contains("CURRENT_TIMESTAMP()"))
                 {
-                    queryParser.queryList[i] = queryParser.queryList[i].Replace("CURRENT_TIMESTAMP()", "CURRENT_TIMESTAMP");
+                    queryParser.queryList[i] = queryParser.queryList[i].Replace(" CURRENT_TIMESTAMP()", " CURRENT_TIMESTAMP");
                 }
             }
 

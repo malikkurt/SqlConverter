@@ -14,7 +14,7 @@ namespace SqlConverter.Converter
             {
                 if (queryParser.queryList[i].Contains("NOW()"))
                 {
-                    queryParser.queryList[i] = queryParser.queryList[i].Replace("NOW()", "SYSTIMESTAMP");
+                    queryParser.queryList[i] = queryParser.queryList[i].Replace("NOW()", "SYSTIMESTAMP"); // oldu
                 }
 
             }

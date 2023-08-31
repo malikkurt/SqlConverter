@@ -12,20 +12,48 @@ namespace SqlConverter.Converter
         {
             for (int i = 0; i < queryParser.queryList.Count; i++)
             {
-                if (queryParser.queryList[i].Contains(" CURDATE()"))
+
+                if (queryParser.queryList[i].Contains(" DATE("))
                 {
-                    queryParser.queryList[i] = queryParser.queryList[i].Replace(" IFNULL", " TRUNC(SYSDATE)");
+                    queryParser.queryList[i] = queryParser.queryList[i].Replace(" DATE(", " TRUNC(");
                 }
 
-                if (queryParser.queryList[i].Contains(" CURRENT_DATE"))
+                if (queryParser.queryList[i].Contains(" CURDATE()"))
                 {
-                    queryParser.queryList[i] = queryParser.queryList[i].Replace(" CURRENT_DATE", " TRUNC(SYSDATE)");
+                    queryParser.queryList[i] = queryParser.queryList[i].Replace(" CURDATE()", " TRUNC(SYSDATE)"); // oldu
+                }
+
+                if (queryParser.queryList[i].Contains(" CURRENT_DATE") && !queryParser.queryList[i].Contains("()"))
+                {
+                    queryParser.queryList[i] = queryParser.queryList[i].Replace(" CURRENT_DATE", " TRUNC(SYSDATE)"); // oldu
                 }
 
                 if (queryParser.queryList[i].Contains(" CURRENT_DATE()"))
                 {
-                    queryParser.queryList[i] = queryParser.queryList[i].Replace(" CURRENT_DATE()", " TRUNC(SYSDATE)");
+                    queryParser.queryList[i] = queryParser.queryList[i].Replace(" CURRENT_DATE()", " TRUNC(SYSDATE)"); // oldu
                 }
+
+                if (queryParser.queryList[i].Contains(" DATE_FORMAT"))
+                {
+                    queryParser.queryList[i] = queryParser.queryList[i].Replace(" DATE_FORMAT", " TO_CHAR"); // oldu
+                }
+                
+                if (queryParser.queryList[i].Contains(" DATE_SUB"))
+                {
+                    
+
+
+
+
+
+
+                }
+
+               
+
+                
+
+
             }
 
             _nextConverterHandler.Convert(queryParser);

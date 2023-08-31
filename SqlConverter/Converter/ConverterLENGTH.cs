@@ -14,12 +14,12 @@ namespace SqlConverter.Converter
             {
                 if (queryParser.queryList[i].Contains(" CHAR_LENGTH"))
                 {
-                    queryParser.queryList[i] = queryParser.queryList[i].Replace(" CHAR_LENGTH", "LENGTH");
+                    queryParser.queryList[i] = queryParser.queryList[i].Replace(" CHAR_LENGTH", " LENGTH"); // oldu
                 }
 
                 if (queryParser.queryList[i].Contains(" CHARACTER_LENGTH"))
                 {
-                    queryParser.queryList[i] = queryParser.queryList[i].Replace(" CHARACTER_LENGTH", "LENGTH");
+                    queryParser.queryList[i] = queryParser.queryList[i].Replace(" CHARACTER_LENGTH", " LENGTH"); // oldu
                 }
             }
             _nextConverterHandler.Convert(queryParser);
