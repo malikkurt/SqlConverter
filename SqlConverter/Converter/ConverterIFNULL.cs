@@ -15,7 +15,7 @@ namespace SqlConverter
             {
                 if (queryParser.queryList[i].Contains("IFNULL"))
                 {
-                    queryParser.queryList[i] = queryParser.queryList[i].Replace("IFNULL", "NVL"); // oldu
+                    queryParser.queryList[i] = queryParser.queryList[i].Replace("IFNULL", " NVL"); 
                 }
 
             }

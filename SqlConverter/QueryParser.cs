@@ -12,7 +12,7 @@ namespace SqlConverter
 
         public QueryParser(string _query)
         {
-            string[] strings = _query.Split("  ");
+            string[] strings = _query.Split("\r\n");
             foreach (string s in strings)
             {
                 if (s == "")

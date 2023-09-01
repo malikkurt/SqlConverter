@@ -17,6 +17,8 @@ namespace SqlConverter.Converter
                 {
                     queryParser.queryList[i] = queryParser.queryList[i].Replace("_DBA_", "_DBA.");
                 }
+
+                
             }
             //_nextConverterHandler.Convert(queryParser);
         }

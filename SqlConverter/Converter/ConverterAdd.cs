@@ -14,7 +14,7 @@ namespace SqlConverter.Converter
 
             for (int i = 0; i < queryParser.queryList.Count; i++)
             {
-                if (queryParser.queryList[i].Contains(" ADDDATE"))
+                if (queryParser.queryList[i].Contains(" ADDDATE")) // oldu ama bak
                 {
                     string date,days, value, addunit, ınterval;
                     string[] temp;
@@ -31,10 +31,10 @@ namespace SqlConverter.Converter
                     temp = temp[3].Split(")");
                     addunit = temp[0];
 
-                    Console.WriteLine("date:" + date.ToString());
-                    Console.WriteLine("deneme:" + ınterval.ToString());
-                    Console.WriteLine("value:" + value.ToString());
-                    Console.WriteLine("addunıt:" + addunit.ToString());
+                    //Console.WriteLine("date:" + date.ToString());
+                    //Console.WriteLine("ınterval:" + ınterval.ToString());
+                    //Console.WriteLine("value:" + value.ToString());
+                    //Console.WriteLine("addunıt:" + addunit.ToString());
                     
                     queryParser.queryList[i] = queryParser.queryList[i].Replace(",", " +");
 
@@ -44,28 +44,15 @@ namespace SqlConverter.Converter
                         queryParser.queryList[i] = queryParser.queryList[i].Replace(ınterval.ToString(), "NUMTODS" + ınterval.ToString());
                         queryParser.queryList[i] = queryParser.queryList[i].Replace(value.ToString(), "(" + value.ToString());
                         queryParser.queryList[i] = queryParser.queryList[i].Replace(addunit.ToString(),addunit.ToString());
-
-
-                        //queryParser.queryList[i] = queryParser.queryList[i].Replace(value.ToString(),value.ToString());
                     }
                     else
                     {
                         queryParser.queryList[i] = queryParser.queryList[i].Replace(" ADDDATE(", " ");
                         queryParser.queryList[i] = queryParser.queryList[i].Replace(value.ToString(),"'"+value.ToString()+"'");
                         queryParser.queryList[i] = queryParser.queryList[i].Replace(addunit.ToString() + ")", addunit.ToString());
-
                     }
-                    
-                 
-                    
-
-
-
-
-        }
-
+                }
             }
-
             _nextConverterHandler.Convert(queryParser);
         }
     }

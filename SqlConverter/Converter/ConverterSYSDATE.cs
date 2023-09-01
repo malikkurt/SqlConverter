@@ -12,10 +12,10 @@ namespace SqlConverter.Converter
         {
             for (int i = 0; i < queryParser.queryList.Count; i++)
             {
-                if (queryParser.queryList[i].Contains("SYSDATE()"))
-                {
-                    queryParser.queryList[i] = queryParser.queryList[i].Replace("SYSDATE()", "SYSDATE");
-                }
+                //if (queryParser.queryList[i].Contains("SYSDATE()"))
+                //{
+                //    queryParser.queryList[i] = queryParser.queryList[i].Replace("SYSDATE()", "SYSDATE");
+                //}
 
             }
 

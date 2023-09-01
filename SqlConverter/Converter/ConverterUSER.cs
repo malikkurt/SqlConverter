@@ -12,15 +12,15 @@ namespace SqlConverter.Converter
         {
             for (int i = 0; i < queryParser.queryList.Count; i++)
             {
-                if (queryParser.queryList[i].Contains("CURRENT_USER"))
-                {
-                    queryParser.queryList[i] = queryParser.queryList[i].Replace("CURRENT_USER", "USER");
-                }
+                //if (queryParser.queryList[i].Contains("CURRENT_USER"))
+                //{
+                //    queryParser.queryList[i] = queryParser.queryList[i].Replace("CURRENT_USER", "USER");
+                //}
 
-                if (queryParser.queryList[i].Contains("CURRENT_USER()"))
-                {
-                    queryParser.queryList[i] = queryParser.queryList[i].Replace("CURRENT_USER()", "USER");
-                }
+                //if (queryParser.queryList[i].Contains("CURRENT_USER()"))
+                //{
+                //    queryParser.queryList[i] = queryParser.queryList[i].Replace("CURRENT_USER()", "USER");
+                //}
             }
 
             _nextConverterHandler.Convert(queryParser);

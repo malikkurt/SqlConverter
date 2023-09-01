@@ -1,9 +1,6 @@
 ﻿using SqlConverter;
 using SqlConverter.Converter;
-using System;
-
 using System.Text;
-
 
 namespace HelloWorld
 {
@@ -16,8 +13,25 @@ namespace HelloWorld
          
             while(true)
             {
-                Console.WriteLine("Lütfen bir SQL sorgusu girin:");
-                string query = Console.ReadLine();
+
+                StringBuilder allQuery = new StringBuilder();
+
+
+                Console.WriteLine("Query Input:");
+                while(true)
+                {
+                    string lıne = Console.ReadLine();
+
+                    if(lıne == "0")
+                    {
+                        break;
+                    }
+
+                    allQuery.AppendLine(lıne);
+
+                }
+
+                string query = allQuery.ToString();
 
 
                 QueryParser queryParser = new QueryParser(query);
@@ -36,6 +50,7 @@ namespace HelloWorld
                     new ConverterTIMESTAMP(),
                     new ConverterTimes(),
                     new ConverterUSER(),
+                    new ConverterConvert(),
                     new ConverterDBA()
                 };
 
@@ -47,19 +62,16 @@ namespace HelloWorld
                 handlers[0].Convert(queryParser);
 
 
+                
                 foreach(string s in queryParser.queryList)
                 {
-                    Console.WriteLine(s);
+                    string temizMetin = s.Replace("\r\n", "");
+                    Console.WriteLine(temizMetin);
+
+
                 }
-
-                }
-
-            
-
-
-
-        
-
+            }
+         
         }
     }
 }
