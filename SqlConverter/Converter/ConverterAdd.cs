@@ -30,11 +30,6 @@ namespace SqlConverter.Converter
 
                     temp = temp[3].Split(")");
                     addunit = temp[0];
-
-                    //Console.WriteLine("date:" + date.ToString());
-                    //Console.WriteLine("ınterval:" + ınterval.ToString());
-                    //Console.WriteLine("value:" + value.ToString());
-                    //Console.WriteLine("addunıt:" + addunit.ToString());
                     
                     queryParser.queryList[i] = queryParser.queryList[i].Replace(",", " +");
 

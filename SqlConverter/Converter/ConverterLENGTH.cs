@@ -14,7 +14,7 @@ namespace SqlConverter.Converter
             {
                 if (queryParser.queryList[i].Contains(" CHAR_LENGTH"))
                 {
-                    queryParser.queryList[i] = queryParser.queryList[i].Replace(" CHAR_LENGTH", " LENGTH"); // oldu
+                    queryParser.queryList[i] = queryParser.queryList[i].Replace(" CHAR_LENGTH", " LENGTH"); 
                 }
 
                 if (queryParser.queryList[i].Contains(" CHARACTER_LENGTH"))

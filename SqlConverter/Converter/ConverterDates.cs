@@ -20,22 +20,22 @@ namespace SqlConverter.Converter
 
                 if (queryParser.queryList[i].Contains(" CURDATE()"))
                 {
-                    queryParser.queryList[i] = queryParser.queryList[i].Replace(" CURDATE()", " TRUNC(SYSDATE)"); // oldu
+                    queryParser.queryList[i] = queryParser.queryList[i].Replace(" CURDATE()", " TRUNC(SYSDATE)"); 
                 }
 
                 if (queryParser.queryList[i].Contains(" CURRENT_DATE") && !queryParser.queryList[i].Contains("()"))
                 {
-                    queryParser.queryList[i] = queryParser.queryList[i].Replace(" CURRENT_DATE", " TRUNC(SYSDATE)"); // oldu
+                    queryParser.queryList[i] = queryParser.queryList[i].Replace(" CURRENT_DATE", " TRUNC(SYSDATE)"); 
                 }
 
                 if (queryParser.queryList[i].Contains(" CURRENT_DATE()"))
                 {
-                    queryParser.queryList[i] = queryParser.queryList[i].Replace(" CURRENT_DATE()", " TRUNC(SYSDATE)"); // oldu
+                    queryParser.queryList[i] = queryParser.queryList[i].Replace(" CURRENT_DATE()", " TRUNC(SYSDATE)"); 
                 }
 
                 if (queryParser.queryList[i].Contains(" DATE_FORMAT"))
                 {
-                    queryParser.queryList[i] = queryParser.queryList[i].Replace(" DATE_FORMAT", " TO_CHAR"); // oldu
+                    queryParser.queryList[i] = queryParser.queryList[i].Replace(" DATE_FORMAT", " TO_CHAR"); 
                 }
                 
                 if (queryParser.queryList[i].Contains(" DATE_SUB")) // oldu
@@ -67,7 +67,7 @@ namespace SqlConverter.Converter
                     queryParser.queryList[i] = queryParser.queryList[i].Replace(" "+value.ToString(), " '" + value.ToString() + "'");
                     queryParser.queryList[i] = queryParser.queryList[i].Replace(addunit.ToString() + ")",addunit.ToString() );
 
-                }// oldu
+                }
 
                 if (queryParser.queryList[i].Contains(" SUBDATE"))
                 {
@@ -101,8 +101,7 @@ namespace SqlConverter.Converter
 
 
 
-                } // oldu
-
+                } 
 
                 if (queryParser.queryList[i].Contains(" DATE_ADD"))
                 {
@@ -125,10 +124,6 @@ namespace SqlConverter.Converter
                     queryParser.queryList[i] = queryParser.queryList[i].Replace(" "+value.ToString()," '"+ value.ToString()+"'");
 
                 }
-
-
-
-
 
 
             }

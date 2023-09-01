@@ -40,9 +40,11 @@ namespace HelloWorld
                 {
                     new ConverterAdd(),
                     new ConverterCEIL(),
+                    new ConverterConcat(),
                     new ConverterDates(),
                     new ConverterDays(),
                     new ConverterIFNULL(),
+                    new ConverterSmallDiff(),
                     new ConverterLENGTH(),
                     new ConverterNOW(),
                     new ConverterQuestion(),
