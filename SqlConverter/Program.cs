@@ -7,17 +7,15 @@ namespace HelloWorld
     class Program
     {
 
-
         static void Main(string[] args)
         {
          
             while(true)
             {
-
                 StringBuilder allQuery = new StringBuilder();
 
-
                 Console.WriteLine("Query Input:");
+
                 while(true)
                 {
                     string lıne = Console.ReadLine();
@@ -38,24 +36,16 @@ namespace HelloWorld
 
                 List<ConverterHandler> handlers = new List<ConverterHandler>
                 {
-                    new ConverterCEIL(),
-                    new ConverterConcat(),
-                    new ConverterDates(),
-                    new ConverterDays(),
+                    new ConverterDateFunctions(),
                     new ConverterSmallDiff(),
-                    new ConverterLENGTH(),
-                    new ConverterNOW(),
                     new ConverterQuestion(),
-                    new ConverterSYSDATE(),
-                    new ConverterTIMESTAMP(),
                     new ConverterTimes(),
-                    new ConverterUSER(),
-                    new ConverterConvert(),
                     new ConverterAdvancedFunctions(),
+                    new ConverterSQLReferences(),
                     new ConverterDBA()
                 };
 
-                // ConverterHandler nesnelerini zincirleme bağla
+                
                 for ( int i = 0; i < handlers.Count - 1; i++)
                 {
                     handlers[i].setNextConverterHandler(handlers[i + 1]);

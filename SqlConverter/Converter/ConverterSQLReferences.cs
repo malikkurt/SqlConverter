@@ -6,22 +6,32 @@ using System.Threading.Tasks;
 
 namespace SqlConverter.Converter
 {
-    internal class ConverterConcat : ConverterHandler
+    internal class ConverterSQLReferences : ConverterHandler
     {
         public override void Convert(QueryParser queryParser)
         {
             for (int i = 0; i < queryParser.queryList.Count; i++)
             {
-                if (queryParser.queryList[i].Contains(" CONCAT"))
+
+                if (queryParser.queryList[i].Contains(" CHAR_LENGTH("))
+                {
+                    queryParser.queryList[i] = queryParser.queryList[i].Replace(" CHAR_LENGTH(", " LENGTH(");
+                }
+
+                if (queryParser.queryList[i].Contains(" CHARACTER_LENGTH("))
+                {
+                    queryParser.queryList[i] = queryParser.queryList[i].Replace(" CHARACTER_LENGTH(", " LENGTH("); 
+                }
+
+                if (queryParser.queryList[i].Contains(" CONCAT("))
                 {
                     string last;
-                    string[] expressıons,temp;
+                    string[] expressıons, temp;
 
                     temp = queryParser.queryList[i].Split("(");
 
                     temp = temp[1].Split(")");
                     last = temp[1];
-                    //temp = temp[0].Split(",");
 
                     Console.WriteLine(last);
 
@@ -29,12 +39,12 @@ namespace SqlConverter.Converter
                     queryParser.queryList[i] = queryParser.queryList[i].Replace(")" + last.ToString(), last.ToString());
                     queryParser.queryList[i] = queryParser.queryList[i].Replace(",", " ||");
 
-
-
-                    
-
-
                 }
+
+
+
+
+
 
             }
             _nextConverterHandler.Convert(queryParser);

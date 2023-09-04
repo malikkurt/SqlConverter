@@ -26,7 +26,17 @@ namespace SqlConverter.Converter
                 {
                     queryParser.queryList[i] = queryParser.queryList[i].Replace("CURRENT_TIME()", "SYSTIMESTAMP");
                 }
-                
+
+                if (queryParser.queryList[i].Contains(" CURRENT_TIMESTAMP"))
+                {
+                    queryParser.queryList[i] = queryParser.queryList[i].Replace(" CURRENT_TIMESTAMP", " CURRENT_TIMESTAMP");
+                }
+
+                if (queryParser.queryList[i].Contains("CURRENT_TIMESTAMP()"))
+                {
+                    queryParser.queryList[i] = queryParser.queryList[i].Replace(" CURRENT_TIMESTAMP()", " CURRENT_TIMESTAMP");
+                }
+
             }
 
 

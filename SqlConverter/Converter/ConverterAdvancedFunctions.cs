@@ -32,7 +32,7 @@ namespace SqlConverter.Converter
                     else
                     {
                         queryParser.queryList[i] = queryParser.queryList[i].Replace(" CONVERT(", " CAST(");
-                        queryParser.queryList[i] = queryParser.queryList[i].Replace(",", " AS");
+                        queryParser.queryList[i] = queryParser.queryList[i].Replace(",", " AS ");
 
                     }
    
@@ -67,15 +67,16 @@ namespace SqlConverter.Converter
 
                 if (queryParser.queryList[i].Contains(" IFNULL("))
                 {
-                    queryParser.queryList[i] = queryParser.queryList[i].Replace("IFNULL", " NVL");
+                    queryParser.queryList[i] = queryParser.queryList[i].Replace(" IFNULL(", " NVL(");
                 }
 
-                if (queryParser.queryList[i].Contains("CEILING("))
+                if (queryParser.queryList[i].Contains(" CEILING("))
                 {
-                    queryParser.queryList[i] = queryParser.queryList[i].Replace("CEILING(", "CEIL(");
+                    queryParser.queryList[i] = queryParser.queryList[i].Replace(" CEILING(", " CEIL(");
                 }
 
             }
+            _nextConverterHandler.Convert(queryParser);
         }
     }
 }

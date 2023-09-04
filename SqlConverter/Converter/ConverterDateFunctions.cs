@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace SqlConverter.Converter
 {
-    public class ConverterDates : ConverterHandler
+    public class ConverterDateFunctions : ConverterHandler
     {
         public override void Convert(QueryParser queryParser)
         {
@@ -66,7 +66,7 @@ namespace SqlConverter.Converter
                     queryParser.queryList[i] = queryParser.queryList[i].Replace(" DATE(", " TO_DATE(");
                 }
 
-                if (queryParser.queryList[i].Contains(" DATEDIFF"))
+                if (queryParser.queryList[i].Contains(" DATEDIFF("))
                 {
                     string date1, date2;
                     string[] temp;
@@ -85,7 +85,7 @@ namespace SqlConverter.Converter
              
                 }
 
-                if (queryParser.queryList[i].Contains(" DATE_ADD"))
+                if (queryParser.queryList[i].Contains(" DATE_ADD("))
                 {
                     string date, ınterval, value, addunıt;
                     string[] temp;
@@ -107,7 +107,7 @@ namespace SqlConverter.Converter
 
                 }
 
-                if (queryParser.queryList[i].Contains(" DATE_FORMAT"))
+                if (queryParser.queryList[i].Contains(" DATE_FORMAT("))
                 {
                     queryParser.queryList[i] = queryParser.queryList[i].Replace(" DATE_FORMAT", " TO_CHAR"); 
                 }
@@ -137,7 +137,7 @@ namespace SqlConverter.Converter
 
                 }
 
-                if (queryParser.queryList[i].Contains("DAY("))
+                if (queryParser.queryList[i].Contains(" DAY("))
                 {
                     string date;
                     string[] temp;
@@ -152,7 +152,7 @@ namespace SqlConverter.Converter
                     
                 }
 
-                if (queryParser.queryList[i].Contains("DAYNAME("))
+                if (queryParser.queryList[i].Contains(" DAYNAME("))
                 {
                     string date;
                     string[] temp;
@@ -167,7 +167,7 @@ namespace SqlConverter.Converter
 
                 }
 
-                if (queryParser.queryList[i].Contains("DAYOFWEEK("))
+                if (queryParser.queryList[i].Contains(" DAYOFWEEK("))
                 {
                     string date;
                     string[] temp;
@@ -182,7 +182,7 @@ namespace SqlConverter.Converter
 
                 }
 
-                if (queryParser.queryList[i].Contains("DAYOFYEAR("))
+                if (queryParser.queryList[i].Contains(" DAYOFYEAR("))
                 {
                     string date;
                     string[] temp;
@@ -197,7 +197,7 @@ namespace SqlConverter.Converter
 
                 }
 
-                if (queryParser.queryList[i].Contains("HOUR("))
+                if (queryParser.queryList[i].Contains(" HOUR("))
                 {
                     string date;
                     string[] temp;
@@ -210,7 +210,7 @@ namespace SqlConverter.Converter
                     queryParser.queryList[i] = queryParser.queryList[i].Replace("HOUR(", "EXTRACT(HOUR FROM ");
                 }
 
-                if (queryParser.queryList[i].Contains("MICROSECOND("))
+                if (queryParser.queryList[i].Contains(" MICROSECOND("))
                 {
                     string date;
                     string[] temp;
@@ -225,7 +225,7 @@ namespace SqlConverter.Converter
 
                 }
 
-                if (queryParser.queryList[i].Contains("MINUTE("))
+                if (queryParser.queryList[i].Contains(" MINUTE("))
                 {
                     string date;
                     string[] temp;
@@ -240,7 +240,7 @@ namespace SqlConverter.Converter
 
                 }
 
-                if (queryParser.queryList[i].Contains("MONTH("))
+                if (queryParser.queryList[i].Contains(" MONTH("))
                 {
                     string date;
                     string[] temp;
@@ -253,7 +253,7 @@ namespace SqlConverter.Converter
 
                 }
 
-                if (queryParser.queryList[i].Contains("MONTHNAME("))
+                if (queryParser.queryList[i].Contains(" MONTHNAME("))
                 {
                     string date;
                     string[] temp;
@@ -269,7 +269,7 @@ namespace SqlConverter.Converter
 
                 }
 
-                if (queryParser.queryList[i].Contains("QUARTER("))
+                if (queryParser.queryList[i].Contains(" QUARTER("))
                 {
                     string date;
                     string[] temp;
@@ -283,9 +283,7 @@ namespace SqlConverter.Converter
 
                 }
 
-                // SECOND
-
-                if (queryParser.queryList[i].Contains(" SUBDATE"))
+                if (queryParser.queryList[i].Contains(" SUBDATE("))
                 {
                     string date, ınterval, value, unıt;
 
@@ -316,7 +314,7 @@ namespace SqlConverter.Converter
                     queryParser.queryList[i] = queryParser.queryList[i].Replace("TIME(", "TO_TIMESTAMP(");
                 }
 
-                if (queryParser.queryList[i].Contains("WEEK("))
+                if (queryParser.queryList[i].Contains(" WEEK("))
                 {
                     string date;
                     string[] temp;
@@ -331,7 +329,7 @@ namespace SqlConverter.Converter
 
                 }
 
-                if (queryParser.queryList[i].Contains("YEAR("))
+                if (queryParser.queryList[i].Contains(" YEAR("))
                 {
                     string date;
                     string[] temp;
@@ -342,6 +340,11 @@ namespace SqlConverter.Converter
 
                     queryParser.queryList[i] = queryParser.queryList[i].Replace("YEAR(", "EXTRACT(YEAR FROM ");
 
+                }
+
+                if (queryParser.queryList[i].Contains( "NOW()"))
+                {
+                    queryParser.queryList[i] = queryParser.queryList[i].Replace("NOW()", "SYSTIMESTAMP"); 
                 }
 
             }

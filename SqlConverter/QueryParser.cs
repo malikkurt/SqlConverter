@@ -15,13 +15,15 @@ namespace SqlConverter
             string[] strings = _query.Split("\r\n");
             foreach (string s in strings)
             {
+
                 if (s == "")
                 {
 
                 }
                 else
                 {
-                    queryList.Add(s);
+                    
+                    queryList.Add(s.Replace(" (","("));
                 }
             }
         }
