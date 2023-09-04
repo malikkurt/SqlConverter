@@ -12,14 +12,14 @@ namespace SqlConverter.Converter
         {
             for (int i = 0; i < queryParser.queryList.Count; i++)
             {
-                if (queryParser.queryList[i].Contains(" LCASE"))
+                if (queryParser.queryList[i].Contains(" LCASE("))
                 {
                     queryParser.queryList[i] = queryParser.queryList[i].Replace(" LCASE", " LOWER");
                 }
 
-                if (queryParser.queryList[i].Contains(" LEFT"))
+                if (queryParser.queryList[i].Contains(" LEFT("))
                 {
-                    queryParser.queryList[i] = queryParser.queryList[i].Replace(" LEFT", " SUBSTR");
+                    queryParser.queryList[i] = queryParser.queryList[i].Replace(" LEFT(", " SUBSTR(");
 
                     string fırstunıt;
                     string[] temp;
@@ -67,8 +67,47 @@ namespace SqlConverter.Converter
 
                 }
 
-                //repeat
-                //RIGHT
+                if (queryParser.queryList[i].Contains(" REPEAT("))
+                {
+                    string text, number;
+                    string[] temp;
+
+                    temp = queryParser.queryList[i].Split("(");
+                    temp = temp[1].Split(")");
+                    temp = temp[0].Split(",");
+                    text = temp[0];
+                    number = temp[1];
+
+                    queryParser.queryList[i] = queryParser.queryList[i].Replace("REPEAT(", "RPAD(");
+                    queryParser.queryList[i] = queryParser.queryList[i].Replace(number + ")", " LENGTH(" +text+") * "+number+", "+ text);
+
+                   
+                }
+
+                if (queryParser.queryList[i].Contains(" RIGHT("))
+                {
+                    string text, number;
+                    string[] temp;
+
+                    temp = queryParser.queryList[i].Split("(");
+                    temp = temp[1].Split(")");
+                    temp = temp[0].Split(",");
+
+                    text = temp[0];
+                    number = temp[1];
+
+                    Console.WriteLine(text);
+                    Console.WriteLine(number);
+
+
+                    queryParser.queryList[i] = queryParser.queryList[i].Replace(" RIGHT(", " SUBSTR(");
+                    queryParser.queryList[i] = queryParser.queryList[i].Replace(number, " GREATEST(-LENGTH("+text+"), -" +number +")");
+
+
+
+
+                }
+               
 
                 if (queryParser.queryList[i].Contains(" SPACE"))
                 {
@@ -127,6 +166,58 @@ namespace SqlConverter.Converter
                     number = temp[0];
 
                     queryParser.queryList[i] = queryParser.queryList[i].Replace("LOG10(" + number + ")", "LOG(10," + number + ")");
+                }
+
+                if (queryParser.queryList[i].Contains("PI()"))
+                {
+                    queryParser.queryList[i] = queryParser.queryList[i].Replace("PI()", "3.1415926535897931");
+                }
+
+                if (queryParser.queryList[i].Contains("RADIANS"))
+                {
+                    string number;
+                    string[] temp;
+
+                    temp = queryParser.queryList[i].Split("(");
+                    temp = temp[1].Split(")");
+                    number = temp[0];
+
+                    queryParser.queryList[i] = queryParser.queryList[i].Replace("(" + number + ")", "(" + number + ") * " + 3.1415926535 / 180);
+
+                }
+
+
+                if (queryParser.queryList[i].Contains(" RAND("))
+                {
+                    if (queryParser.queryList[i].Contains("*"))
+                    {
+                        string seed;
+                        string[] temp;
+
+                        temp = queryParser.queryList[i].Split('*');
+                        temp = temp[1].Split(";");
+                        seed = temp[0];
+
+                        queryParser.queryList[i] = queryParser.queryList[i].Replace("RAND()", "DBMS_RANDOM.VALUE");
+
+                    }
+                    else
+                    {
+                        string number;
+                        string[] temp;
+
+                        temp = queryParser.queryList[i].Split("(");
+                        temp = temp[1].Split(")");
+                        number = temp[0];
+
+                        queryParser.queryList[i] = queryParser.queryList[i].Replace("RAND(" + number + ")", "DBMS_RANDOM.VALUE");
+                    }
+
+                }
+
+                if (queryParser.queryList[i].Contains("TRUNCATE"))
+                {
+                    queryParser.queryList[i] = queryParser.queryList[i].Replace("TRUNCATE", "TRUNC");
                 }
 
 

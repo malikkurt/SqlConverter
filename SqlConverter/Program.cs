@@ -38,12 +38,10 @@ namespace HelloWorld
 
                 List<ConverterHandler> handlers = new List<ConverterHandler>
                 {
-                    new ConverterAdd(),
                     new ConverterCEIL(),
                     new ConverterConcat(),
                     new ConverterDates(),
                     new ConverterDays(),
-                    new ConverterIFNULL(),
                     new ConverterSmallDiff(),
                     new ConverterLENGTH(),
                     new ConverterNOW(),
@@ -53,6 +51,7 @@ namespace HelloWorld
                     new ConverterTimes(),
                     new ConverterUSER(),
                     new ConverterConvert(),
+                    new ConverterAdvancedFunctions(),
                     new ConverterDBA()
                 };
 
