@@ -14,36 +14,28 @@ namespace SqlConverter.Converter
             for (int i = 0; i < queryParser.queryList.Count; i++)
             {
 
-                if (queryParser.queryList[i].Contains(" CONVERT(")) // tekrar yaz
+                if (queryParser.queryList[i].Contains(" CONVERT(")) 
                 {
                     string value, type;
                     string[] temp;
 
                     temp = queryParser.queryList[i].Split("(");
-
-                    temp = temp[1].ToString().Split(",");
+                    temp = temp[1].Split(")");
 
                     value = temp[0];
-
-                    
-                    temp = temp[1].ToString().Split(" "); // BUG
-
-                    temp = temp[1].ToString().Split(")");
-
-                    type = temp[0];
-
-                    
+                    type = temp[1];
 
                     if (queryParser.queryList[i].Contains("USING"))
                     {
-                        queryParser.queryList[i] = queryParser.queryList[i].Replace(", ", " USING ");
+
                     }
                     else
                     {
-                        queryParser.queryList[i] = queryParser.queryList[i].Replace(" CONVERT", " CAST");
-                        queryParser.queryList[i] = queryParser.queryList[i].Replace(",", " AS ");
+                        queryParser.queryList[i] = queryParser.queryList[i].Replace(" CONVERT(", " CAST(");
+                        queryParser.queryList[i] = queryParser.queryList[i].Replace(",", " AS");
 
                     }
+   
                 }
 
                 if (queryParser.queryList[i].Contains(" IF("))
@@ -76,6 +68,11 @@ namespace SqlConverter.Converter
                 if (queryParser.queryList[i].Contains(" IFNULL("))
                 {
                     queryParser.queryList[i] = queryParser.queryList[i].Replace("IFNULL", " NVL");
+                }
+
+                if (queryParser.queryList[i].Contains("CEILING("))
+                {
+                    queryParser.queryList[i] = queryParser.queryList[i].Replace("CEILING(", "CEIL(");
                 }
 
             }

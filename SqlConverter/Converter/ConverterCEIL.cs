@@ -17,10 +17,7 @@ namespace SqlConverter.Converter
                     queryParser.queryList[i] = queryParser.queryList[i].Replace("CEILING", "CEIL");
                 }
 
-                //if (queryParser.queryList[i].Contains("CEIL"))
-                //{
-                //    queryParser.queryList[i] = queryParser.queryList[i].Replace("CEIL", "CEIL");
-                //}
+                
             }
 
             _nextConverterHandler.Convert(queryParser);
